@@ -6,7 +6,6 @@ import TeacherDashboard from './components/TeacherDashboard';
 import StudentDashboard from './components/StudentDashboard';
 import CreateClassroom from './components/createclassroom';
 import Principaladd from './components/principaladd';
-import Editclassroom from './components/editclassroom';
 import PrincipalLayout from './pages/PrincipalLayout';
 import TeacherLayout from './pages/TeacherLayout';
 import StudentLayout from './pages/StudentLayout';
@@ -31,7 +30,7 @@ function App() {
         <Route path="/student" element={<PrivateRoute element={<StudentDashboard />} layout={StudentLayout} />} />
         <Route path="/createclassroom" element={<PrivateRoute element={<CreateClassroom />} layout={PrincipalLayout} />} />
         <Route path="/principaladd" element={<PrivateRoute element={<Principaladd />} layout={PrincipalLayout} />} />
-        <Route path="/edit-classroom/:classroomId" element={<PrivateRoute element={<Editclassroom />} layout={PrincipalLayout} />} />
+    
       </Routes>
     </Router>
   );
