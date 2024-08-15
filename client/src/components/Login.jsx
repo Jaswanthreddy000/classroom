@@ -9,7 +9,7 @@ function Login() {
   const navigate = useNavigate();
 
   // Properly set the apiUrl with a fallback
-  const apiUrl =   'http://localhost:5000';
+  const apiUrl =   'https://classroom-znl6.onrender.com';
   console.log(apiUrl); // This will correctly log the API URL or the fallback
 
   const handleLogin = async (e) => {
