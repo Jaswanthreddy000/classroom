@@ -15,7 +15,7 @@ function PrincipalAdd() {
   useEffect(() => {
     const fetchClassrooms = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/classroom/all`);
+        const response = await axios.get(`https://classroom-znl6.onrender.com/api/classroom/all`);
         setClassrooms(response.data);
       } catch (error) {
         console.error('Error fetching classrooms:', error);
@@ -30,8 +30,8 @@ function PrincipalAdd() {
 
     try {
       const [teachersResponse, studentsResponse] = await Promise.all([
-        axios.get(`${process.env.REACT_APP_API_URL}/api/users/available-teachers/${classroom._id}`),
-        axios.get(`${process.env.REACT_APP_API_URL}/api/users/available-students/${classroom._id}`)
+        axios.get(`https://classroom-znl6.onrender.com/api/users/available-teachers/${classroom._id}`),
+        axios.get(`https://classroom-znl6.onrender.com/api/users/available-students/${classroom._id}`)
       ]);
 
       setAvailableTeachers(teachersResponse.data);
@@ -43,7 +43,7 @@ function PrincipalAdd() {
 
   const handleAddTeacher = async () => {
     try {
-      const response = await axios.post(`http://localhost:5000/api/classroom/assign-teacher/${selectedClassroom._id}`, { teacherId });
+      const response = await axios.post(`https://classroom-znl6.onrender.com/api/classroom/assign-teacher/${selectedClassroom._id}`, { teacherId });
       setMessage(response.data.message);
       setError(''); // Clear previous errors
       setSelectedClassroom(null); // Reset selection after adding teacher
@@ -55,7 +55,7 @@ function PrincipalAdd() {
 
   const handleAddStudents = async () => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/classroom/assign-students/${selectedClassroom._id}`, { studentIds });
+      const response = await axios.post(`https://classroom-znl6.onrender.com/api/classroom/assign-students/${selectedClassroom._id}`, { studentIds });
       setMessage(response.data.message);
       setError(''); // Clear previous errors
       setSelectedClassroom(null); // Reset selection after adding students
