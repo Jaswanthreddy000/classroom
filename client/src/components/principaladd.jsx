@@ -45,10 +45,18 @@ function PrincipalAdd() {
     try {
       const response = await axios.post(`https://classroom-znl6.onrender.com/api/classroom/assign-teacher/${selectedClassroom._id}`, { teacherId });
       setMessage(response.data.message);
-      setError(''); // Clear previous errors
-      setSelectedClassroom(null); // Reset selection after adding teacher
+      setError('');
+
+      // Update the classroom state to reflect the new teacher
+      setSelectedClassroom(prevClassroom => ({
+        ...prevClassroom,
+        teacher: availableTeachers.find(teacher => teacher._id === teacherId)
+      }));
+
+      // Optionally, remove the assigned teacher from the available teachers list
+      setAvailableTeachers(prevTeachers => prevTeachers.filter(teacher => teacher._id !== teacherId));
     } catch (error) {
-      setMessage(''); // Clear previous messages
+      setMessage('');
       setError(error.response?.data?.message || 'Something went wrong');
     }
   };
@@ -57,16 +65,20 @@ function PrincipalAdd() {
     try {
       const response = await axios.post(`https://classroom-znl6.onrender.com/api/classroom/assign-students/${selectedClassroom._id}`, { studentIds });
       setMessage(response.data.message);
-      setError(''); // Clear previous errors
-      setSelectedClassroom(null); // Reset selection after adding students
+      setError('');
+
+      // Update the classroom state to reflect the new students
+      setSelectedClassroom(prevClassroom => ({
+        ...prevClassroom,
+        students: [...prevClassroom.students, ...availableStudents.filter(student => studentIds.includes(student._id))]
+      }));
+
+      // Optionally, remove the assigned students from the available students list
+      setAvailableStudents(prevStudents => prevStudents.filter(student => !studentIds.includes(student._id)));
     } catch (error) {
-      setMessage(''); // Clear previous messages
+      setMessage('');
       setError(error.response?.data?.message || 'Something went wrong');
     }
-  };
-
-  const handleSave = () => {
-    window.location.reload(); // Refresh the page
   };
 
   return (
@@ -126,12 +138,6 @@ function PrincipalAdd() {
           </div>
         </div>
       )}
-
-      <div>
-        <button onClick={handleSave} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors">
-          Save
-        </button>
-      </div>
 
       {message && <p className="mt-4 text-green-500">{message}</p>}
       {error && <p className="mt-4 text-red-500">{error}</p>}
