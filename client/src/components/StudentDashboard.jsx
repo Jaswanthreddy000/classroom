@@ -15,7 +15,7 @@ function StudentDashboard() {
       }
 
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/classroom/all`);
+        const response = await axios.get(`https://classroom-znl6.onrender.com/api/classroom/all`);
         const filteredClassrooms = response.data.filter(classroom => 
           classroom.students.some(student => student.email === email)
         );
