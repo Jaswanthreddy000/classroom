@@ -8,9 +8,15 @@ function Login() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  // Properly set the apiUrl with a fallback
+  const apiUrl =   'http://localhost:5000';
+  console.log(apiUrl); // This will correctly log the API URL or the fallback
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, { email, password });
+      // Use the apiUrl variable that now has either the env URL or the fallback
+      const response = await axios.post(`${apiUrl}/api/auth/login`, { email, password });
       const { id, role, token } = response.data;
 
       // Store user details and token in local storage
@@ -39,26 +45,28 @@ function Login() {
     >
       <div className="bg-white p-8 rounded shadow-md w-full max-w-sm">
         <h1 className="text-2xl mb-4">Login</h1>
-        <input
-          type="email"
-          placeholder="Email"
-          className="mb-4 p-2 border w-full"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="mb-4 p-2 border w-full"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button
-          onClick={handleLogin}
-          className="bg-blue-500 text-white p-2 rounded w-full"
-        >
-          Login
-        </button>
+        <form onSubmit={handleLogin}>
+          <input
+            type="email"
+            placeholder="Email"
+            className="mb-4 p-2 border w-full"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            className="mb-4 p-2 border w-full"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button
+            type="submit"
+            className="bg-blue-500 text-white p-2 rounded w-full"
+          >
+            Login
+          </button>
+        </form>
       </div>
     </div>
   );
