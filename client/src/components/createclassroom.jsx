@@ -23,7 +23,7 @@ const CreateClassroom = () => {
     const classroomData = { name, startTime, endTime, days };
     
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/api/classroom/create`, classroomData);
+      await axios.post(`https://classroom-znl6.onrender.com/api/classroom/create`, classroomData);
       alert('Classroom created successfully');
       navigate('/principaladd'); // Redirect to /principaladd
     } catch (error) {
