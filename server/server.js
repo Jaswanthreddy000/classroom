@@ -10,7 +10,7 @@ const app = express();
 
 app.use(cors(
   {
-    origin : [https://classroom-1-uigw.onrender.com],
+    origin : 'https://classroom-1-uigw.onrender.com',
     methods : ["POST", "GET"],
     credentials : true
   }
