@@ -46,7 +46,7 @@ function PrincipalAdd() {
       const response = await axios.post(`https://classroom-znl6.onrender.com/api/classroom/assign-teacher/${selectedClassroom._id}`, { teacherId });
       setMessage(response.data.message);
       setError('');
-
+      await fetchClassrooms();
       // Update the classroom state to reflect the new teacher
       setSelectedClassroom(prevClassroom => ({
         ...prevClassroom,
