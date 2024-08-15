@@ -9,7 +9,7 @@ function PrincipalDashboard() {
 
   const handleAddUser = async () => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/add-user`, { email, password, role });
+      const response = await axios.post(`https://classroom-znl6.onrender.com/api/auth/add-user`, { email, password, role });
       setMessage(response.data.message);
     } catch (error) {
       setMessage(error.response.data.message || 'Something went wrong');
