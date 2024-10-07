@@ -1,5 +1,11 @@
 # Classroom Management App
 
+**Live Project Links**:
+- Frontend: [https://classroom-1-uigw.onrender.com](https://classroom-1-uigw.onrender.com)
+- Backend: [https://classroom-znl6.onrender.com](https://classroom-znl6.onrender.com)
+- Example API Endpoint: [Get All Classrooms](https://classroom-znl6.onrender.com/api/classroom/all)
+
+
 A full-stack **Classroom Management System** designed to streamline school operations by facilitating seamless management of teachers, students, and class assignments. Built using **React**, **Node.js**, **MongoDB**, and **Tailwind CSS**, the application ensures efficient communication between principals, teachers, and students.
 
 ## Key Features
